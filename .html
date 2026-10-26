@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LearnFlow Pro | Eğitim SaaS Platformu</title>
+    <meta
+      name="description"
+      content="Eğitim kurumları için yönetim, öğrenci, öğretmen ve abonelik çözümü."
+    />
+    <style>
+      :root {
+        --bg: #f8fafc;
+        --card: #ffffff;
+        --primary: #2563eb;
+        --primary-dark: #0f172a;
+        --primary-soft: #eff6ff;
+        --accent: #14b8a6;
+        --text: #0f172a;
+        --muted: #475569;
+        --line: #e2e8f0;
+        --success: #10b981;
+        --shadow: 0 20px 50px rgba(15, 23, 42, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .container {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .section {
+        padding: 100px 0;
+      }
+
+      .section-title {
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1.1;
+        margin: 0 0 16px;
+        font-weight: 800;
+      }
+
+      .section-subtitle {
+        color: var(--muted);
+        font-size: 1.06rem;
+        max-width: 680px;
+        margin: 0 auto 42px;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(37, 99, 235, 0.1);
+        color: var(--primary);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 15px 26px;
+        border-radius: 12px;
+        border: 1px solid transparent;
+        font-weight: 700;
+        transition: 0.2s ease;
+        cursor: pointer;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--primary), #1d4ed8);
+        color: #fff;
+        box-shadow: 0 12px 30px rgba(37, 99, 235, 0.25);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-1px);
+      }
+
+      .btn-secondary {
+        background: #fff;
+        border-color: var(--line);
+        color: var(--text);
+      }
+
+      .btn-secondary:hover {
+        background: #f8fafc;
+      }
+
+      .btn-dark {
+        background: var(--primary-dark);
+        color: #fff;
+      }
+
+      .btn-dark:hover {
+        background: #111827;
+      }
+
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(15, 23, 42, 0.72);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 78px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        color: white;
+        letter-spacing: -0.04em;
+        font-size: 1.3rem;
+      }
+
+      .logo-mark {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #60a5fa, #2563eb);
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 24px rgba(37, 99, 235, 0.35);
+      }
+
+      .logo-mark::after {
+        content: "";
+        width: 14px;
+        height: 14px;
+        border-radius: 5px;
+        background: white;
+        transform: rotate(45deg);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.96rem;
+      }
+
+      .nav a:hover {
+        color: #fff;
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .btn-header {
+        padding: 10px 18px;
+        border-radius: 10px;
+        font-size: 0.92rem;
+      }
+
+      .hero {
+        background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.35), transparent 25%),
+          linear-gradient(180deg, #0f172a 0%, #111827 100%);
+        color: white;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+        background-size: 36px 36px;
+        mask-image: radial-gradient(circle at center, black 20%, transparent 80%);
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 1.08fr 0.92fr;
+        align-items: center;
+        gap: 40px;
+        padding: 90px 0 80px;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(2.8rem, 5vw, 5rem);
+        line-height: 1.02;
+        letter-spacing: -0.05em;
+        margin: 18px 0 22px;
+      }
+
+      .hero-copy p {
+        font-size: 1.125rem;
+        color: rgba(255, 255, 255, 0.75);
+        max-width: 620px;
+      }
+
+      .hero-actions {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-top: 30px;
+        flex-wrap: wrap;
+      }
+
+      .hero-meta {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin-top: 42px;
+        flex-wrap: wrap;
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 0.92rem;
+      }
+
+      .hero-meta .meta-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .hero-visual {
+        display: flex;
+        justify-content: center;
+      }
+
+      .dashboard {
+        width: min(100%, 560px);
+        background: rgba(15, 23, 42, 0.7);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 28px;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+        overflow: hidden;
+      }
+
+      .dashboard-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 22px;
+        background: rgba(255,255,255,0.02);
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+      }
+
+      .dots {
+        display: flex;
+        gap: 8px;
+      }
+
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+
+      .dot.red { background: #f87171; }
+      .dot.yellow { background: #fbbf24; }
+      .dot.green { background: #34d399; }
+
+      .dashboard-body {
+        padding: 22px;
+      }
+
+      .kpis {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin-bottom: 18px;
+      }
+
+      .kpi-card {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.05);
+        border-radius: 18px;
+        padding: 16px 12px;
+      }
+
+      .kpi-card .label {
+        color: rgba(255,255,255,0.7);
+        font-size: 0.78rem;
+      }
+
+      .kpi-card .value {
+        margin-top: 10px;
+        font-size: clamp(1.3rem, 2vw, 2rem);
+        font-weight: 800;
+      }
+
+      .chart-box {
+        background: linear-gradient(180deg, rgba(37,99,235,0.14), rgba(13,148,136,0.08));
+        border: 1px solid rgba(255,255,255,0.07);
+        border-radius: 18px;
+        padding: 18px;
+        min-height: 200px;
+      }
+
+      .bars {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        height: 120px;
+        gap: 10px;
+        margin-top: 22px;
+      }
+
+      .bar {
+        flex: 1;
+        border-radius: 10px 10px 0 0;
+        background: linear-gradient(180deg, rgba(96,165,250,1), rgba(37,99,235,1));
+        opacity: 0.9;
+      }
+
+      .bar:nth-child(1) { height: 35%; }
+      .bar:nth-child(2) { height: 58%; }
+      .bar:nth-child(3) { height: 72%; }
+      .bar:nth-child(4) { height: 55%; }
+      .bar:nth-child(5) { height: 90%; }
+      .bar:nth-child(6) { height: 100%; }
+
+      .stats-band {
+        background: var(--card);
+        position: relative;
+        z-index: 2;
+        margin-top: -18px;
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(148, 163, 184, 0.12);
+      }
+
+      .stats-inner {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 20px;
+        padding: 28px;
+      }
+
+      .stat-box {
+        padding: 14px 16px;
+        border-radius: 18px;
+        background: linear-gradient(180deg, #ffffff, #f8fafc);
+        border: 1px solid var(--line);
+      }
+
+      .stat-box strong {
+        display: block;
+        font-size: clamp(1.6rem, 3vw, 2.3rem);
+        line-height: 1;
+      }
+
+      .stat-box span {
+        color: var(--muted);
+        font-size: 0.98rem;
+      }
+
+      .features {
+        background: #fff;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 22px;
+        margin-top: 36px;
+      }
+
+      .feature-card {
+        background: linear-gradient(180deg, #ffffff, #f8fafc);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 24px 20px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+      }
+
+      .icon-box {
+        width: 58px;
+        height: 58px;
+        border-radius: 18px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, rgba(37,99,235,0.13), rgba(20,184,166,0.12));
+        color: var(--primary);
+        font-size: 1.6rem;
+        font-weight: 800;
+        margin-bottom: 16px;
+      }
+
+      .feature-card h3 {
+        margin: 0 0 8px;
+        font-size: 1.2rem;
+      }
+
+      .feature-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.98rem;
+      }
+
+      .solutions {
+        background: #f8fafc;
+      }
+
+      .roles {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .role-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 28px 22px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.03);
+      }
+
+      .role-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(20,184,166,0.18));
+        display: grid;
+        place-items: center;
+        color: var(--primary);
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+
+      .role-card h3 {
+        margin: 18px 0 10px;
+        font-size: 1.45rem;
+      }
+
+      .role-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .role-card li {
+        position: relative;
+        padding-left: 22px;
+        margin-top: 12px;
+      }
+
+      .role-card li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: var(--success);
+        font-weight: 700;
+      }
+
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .step {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 28px 22px;
+        position: relative;
+      }
+
+      .step .num {
+        display: inline-flex;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        background: var(--primary-soft);
+        color: var(--primary);
+        font-weight: 800;
+        margin-bottom: 16px;
+      }
+
+      .step h3 {
+        margin: 0 0 10px;
+        font-size: 1.2rem;
+      }
+
+      .step p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .pricing {
+        background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      }
+
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+        margin-top: 36px;
+      }
+
+      .price-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 26px;
+        padding: 28px;
+        position: relative;
+        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.03);
+      }
+
+      .price-card.featured {
+        border-color: rgba(37, 99, 235, 0.4);
+        box-shadow: 0 18px 40px rgba(37, 99, 235, 0.12);
+        transform: translateY(-6px);
+      }
+
+      .popular {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        background: var(--primary);
+        color: #fff;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 700;
+      }
+
+      .price-card h3 {
+        margin: 0 0 12px;
+        font-size: 1.5rem;
+      }
+
+      .price {
+        display: flex;
+        align-items: end;
+        gap: 8px;
+        margin: 14px 0 12px;
+      }
+
+      .price strong {
+        font-size: clamp(2.3rem, 4vw, 3rem);
+        line-height: 1;
+        letter-spacing: -0.06em;
+      }
+
+      .price span {
+        color: var(--muted);
+      }
+
+      .price-card p {
+        color: var(--muted);
+        margin: 0 0 20px;
+      }
+
+      .price-card ul {
+        list-style: none;
+        margin: 0 0 24px;
+        padding: 0;
+      }
+
+      .price-card li {
+        padding: 10px 0;
+        border-top: 1px solid var(--line);
+        color: var(--text);
+      }
+
+      .price-card li:first-child {
+        border-top: none;
+      }
+
+      .testimonials {
+        background: #0f172a;
+        color: #fff;
+      }
+
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+        margin-top: 36px;
+      }
+
+      .testimonial {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 22px;
+        padding: 28px 22px;
+      }
+
+      .stars {
+        color: #fbbf24;
+        letter-spacing: 0.15em;
+      }
+
+      .testimonial p {
+        margin: 18px 0 22px;
+        color: rgba(255,255,255,0.8);
+      }
+
+      .person {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #60a5fa, #14b8a6);
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+      }
+
+      .person small {
+        color: rgba(255,255,255,0.7);
+      }
+
+      .cta {
+        background: var(--primary-soft);
+      }
+
+      .cta-box {
+        background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%);
+        border-radius: 30px;
+        padding: clamp(28px, 4vw, 54px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        color: #fff;
+        box-shadow: 0 25px 50px rgba(37, 99, 235, 0.2);
+      }
+
+      .cta-box h2 {
+        margin: 0 0 10px;
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1.1;
+      }
+
+      .cta-box p {
+        margin: 0;
+        color: rgba(255,255,255,0.8);
+      }
+
+      .cta-actions {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .footer {
+        background: #0b1120;
+        color: rgba(255,255,255,0.8);
+        padding: 26px 0;
+      }
+
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .footer-links {
+        display: flex;
+        align-items: center;
+        gap: 12px 22px;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 980px) {
+        .feature-grid,
+        .roles,
+        .steps,
+        .testimonial-grid,
+        .pricing-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .hero-inner {
+          grid-template-columns: 1fr;
+          padding-top: 70px;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .nav {
+          display: none;
+        }
+
+        .header-actions {
+          gap: 10px;
+        }
+
+        .feature-grid,
+        .roles,
+        .steps,
+        .testimonial-grid,
+        .pricing-grid,
+        .stats-inner {
+          grid-template-columns: 1fr;
+        }
+
+        .cta-box {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .hero-copy h1 {
+          font-size: 2.7rem;
+        }
+
+        .section {
+          padding: 76px 0;
+        }
+
+        .kpis {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header-inner">
+        <a href="#" class="logo">
+          <span class="logo-mark"></span>
+          LearnFlow Pro
+        </a>
+
+        <nav class="nav">
+          <a href="#features">Özellikler</a>
+          <a href="#solutions">Çözümler</a>
+          <a href="#pricing">Fiyatlar</a>
+          <a href="#testimonials">Müşteriler</a>
+          <a href="#contact">İletişim</a>
+        </nav>
+
+        <div class="header-actions">
+          <a href="#" class="btn btn-secondary btn-header">Giriş Yap</a>
+          <a href="#contact" class="btn btn-primary btn-header">Demo İste</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <div class="badge">EĞİTİM SAAS PLATFORMU</div>
+            <h1>Eğitim kurumlarınızı tek bir platformda yönetin.</h1>
+            <p>
+              Öğretmenler, öğrenciler, yöneticiler ve abonelik takibi tek panelde.
+              Daha hızlı operasyon, daha yüksek katılım ve daha güçlü büyüme.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#contact" class="btn btn-primary">Ücretsiz Demo</a>
+              <a href="#features" class="btn btn-secondary">Daha Fazla Bilgi</a>
+            </div>
+
+            <div class="hero-meta">
+              <span class="meta-pill">✔ 1500+ kurum</span>
+              <span class="meta-pill">✔ 98% müşteri memnuniyeti</span>
+              <span class="meta-pill">✔ 24/7 destek</span>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="dashboard">
+              <div class="dashboard-top">
+                <div class="dots">
+                  <span class="dot red"></span>
+                  <span class="dot yellow"></span>
+                  <span class="dot green"></span>
+                </div>
+                <span style="color: rgba(255,255,255,0.7); font-size: 0.8rem;">
+                  Yönetim Paneli
+                </span>
+              </div>
+
+              <div class="dashboard-body">
+                <div class="kpis">
+                  <div class="kpi-card">
+                    <div class="label">Öğrenci</div>
+                    <div class="value">24.5K</div>
+                  </div>
+                  <div class="kpi-card">
+                    <div class="label">Öğretmen</div>
+                    <div class="value">1.2K</div>
+                  </div>
+                  <div class="kpi-card">
+                    <div class="label">Gelir</div>
+                    <div class="value">$84K</div>
+                  </div>
+                </div>
+
+                <div class="chart-box">
+                  <div style="display:flex; justify-content:space-between; color: rgba(255,255,255,0.8);">
+                    <span>Katılım</span>
+                    <span>+28.4%</span>
+                  </div>
+                  <div class="bars">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats-band">
+        <div class="container stats-inner">
+          <div class="stat-box">
+            <strong>25K+</strong>
+            <span>Aktif öğrenci</span>
+          </div>
+          <div class="stat-box">
+            <strong>400+</strong>
+            <span>Öğretmen</span>
+          </div>
+          <div class="stat-box">
+            <strong>82%</strong>
+            <span>Öğrenci katılımı</span>
+          </div>
+          <div class="stat-box">
+            <strong>42%</strong>
+            <span>Operasyonel hız artışı</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section features" id="features">
+        <div class="container text-center">
+          <div class="badge">ÖZELLİKLER</div>
+          <h2 class="section-title">Tüm eğitim operasyonunu tek platformda yönetin</h2>
+          <p class="section-subtitle">
+            Kurumunuzun eğitim, kontrol, abonelik ve yönetim süreçlerini tek bir
+            sistem üzerinde otomatikleştirin.
+          </p>
+
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="icon-box">◎</div>
+              <h3>Yönetici Paneli</h3>
+              <p>
+                Tüm kullanıcılar, dersler, abonelikler ve kurum verileri tek ekranda.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="icon-box">✦</div>
+              <h3>Öğretmen Yönetimi</h3>
+              <p>
+                Ders planlaması, öğrenci takibi, görevler ve iletişim akışı tek tıkla.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="icon-box">▣</div>
+              <h3>Öğrenci Portali</h3>
+              <p>
+                Kayıt, ders erişimi, ödevler ve ilerleme raporları tek bir kullanıcı deneyimi.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="icon-box">◌</div>
+              <h3>Abonelik & Ödeme</h3>
+              <p>
+                Plan oluşturma, fatura takibi, ödeme kontrolü ve otomatik yenileme.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="icon-box">⚑</div>
+              <h3>Rol Tabanlı Yetki</h3>
+              <p>
+                Admin, öğretmen, öğrenci ve destek ekibi için özel erişim kontrolü.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="icon-box">▤</div>
+              <h3>Çoklu Kiracılık</h3>
+              <p>
+                Farklı kurum veya şube yapıları için güvenli ve bağımsız veri alanları.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="icon-box">◫</div>
+              <h3>Raporlar & Analitik</h3>
+              <p>
+                Katılım, ders başarısı, gelir ve kullanıcı davranışlarını detaylı takip edin.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="icon-box">⇄</div>
+              <h3>Bildirimler</h3>
+              <p>
+                E-posta, SMS ve sistem içi bildirimler ile kullanıcılara otomatik bilgi verin.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section solutions" id="solutions">
+        <div class="container text-center">
+          <div class="badge">ÇÖZÜM</div>
+          <h2 class="section-title">Herkes için özel deneyim</h2>
+          <p class="section-subtitle">
+            Platformunuz, yöneticiler, öğretmenler ve öğrenciler için farklı ama
+            bütünleşik arayüzler sunar.
+          </p>
+
+          <div class="roles">
+            <div class="role-card">
+              <div class="role-icon">A</div>
+              <h3>Yönetici</h3>
+              <ul>
+                <li>Kurum görünümü ve kullanıcı takibi</li>
+                <li>Abonelik ve ödeme yönetimi</li>
+                <li>Raporlar ve performans analizi</li>
+                <li>Şube / tenant yönetimi</li>
+              </ul>
+            </div>
+
+            <div class="role-card">
+              <div class="role-icon">T</div>
+              <h3>Öğretmen</h3>
+              <ul>
+                <li>Ders oluşturma ve içerik yönetimi</li>
+                <li>Öğrenci ilerleme takibi</li>
+                <li>Ödev ve sınav yönetimi</li>
+                <li>İletişim ve bildirimler</li>
+              </ul>
+            </div>
+
+            <div class="role-card">
+              <div class="role-icon">S</div>
+              <h3>Öğrenci</h3>
+              <ul>
+                <li>Kurslara hızlı erişim</li>
+                <li>Görev ve sınav görünümü</li>
+                <li>Kişisel ilerleme takibi</li>
+                <li>Profile ve ödeme bilgileri</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container text-center">
+          <div class="badge">NASIL ÇALIŞIR</div>
+          <h2 class="section-title">Dört adımda hazır olursunuz</h2>
+          <p class="section-subtitle">
+            Sistem kurulumunu çok hızlı şekilde yönetebilir, kullanıma geçebilirsiniz.
+          </p>
+
+          <div class="steps">
+            <div class="step">
+              <div class="num">1</div>
+              <h3>Kurum Oluştur</h3>
+              <p>İstediğiniz yapı için tenant ve kurumsal profil oluşturun.</p>
+            </div>
+
+            <div class="step">
+              <div class="num">2</div>
+              <h3>Kullanıcıları Ekleyin</h3>
+              <p>Yönetici, öğretmen, öğrenci ve yetkilendirmeleri tanımlayın.</p>
+            </div>
+
+            <div class="step">
+              <div class="num">3</div>
+              <h3>Eğitim Sürecini Başlatın</h3>
+              <p>Dersler, sınavlar, içerik ve ödev süreçlerini başlatın.</p>
+            </div>
+
+            <div class="step">
+              <div class="num">4</div>
+              <h3>Raporlayın ve Büyütün</h3>
+              <p>Performans verilerini analiz edip abonelik ve katılımı artırın.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section pricing" id="pricing">
+        <div class="container text-center">
+          <div class="badge">FİYATLANDIRMA</div>
+          <h2 class="section-title">İhtiyacınıza uygun plan seçin</h2>
+          <p class="section-subtitle">
+            Küçük ölçekten kurumsal seviyeye kadar tüm eğitim operasyonlarını destekleyin.
+          </p>
+
+          <div class="pricing-grid">
+            <div class="price-card">
+              <h3>Starter</h3>
+              <div class="price">
+                <strong>$49</strong>
+                <span>/ ay</span>
+              </div>
+              <p>Yeni kurulan eğitim organizasyonları için uygun çözüm.</p>
+
+              <ul>
+                <li>1 kurum</li>
+                <li>500 öğrenci</li>
+                <li>Temel raporlar</li>
+                <li>E-posta bildirimleri</li>
+              </ul>
+
+              <a href="#contact" class="btn btn-secondary" style="width:100%;">Başla</a>
+            </div>
+
+            <div class="price-card featured">
+              <div class="popular">POPÜLER</div>
+              <h3>Growth</h3>
+              <div class="price">
+                <strong>$129</strong>
+                <span>/ ay</span>
+              </div>
+              <p>Gelişen kurumlar için daha güçlü ve ölçeklenebilir yapı.</p>
+
+              <ul>
+                <li>Çoklu tenant</li>
+                <li>Öğretmen ve öğrenci yönetimi</li>
+                <li>Gelişmiş analitik</li>
+                <li>Ödeme sistemi</li>
+              </ul>
+
+              <a href="#contact" class="btn btn-primary" style="width:100%;">Hemen Başla</a>
+            </div>
+
+            <div class="price-card">
+              <h3>Enterprise</h3>
+              <div class="price">
+                <strong>Özel</strong>
+              </div>
+              <p>Kurumsal ve çoklu lokasyonlu yapı için özel çözüm.</p>
+
+              <ul>
+                <li>Özel entegrasyonlar</li>
+                <li>API erişimi</li>
+                <li>Özel destek</li>
+                <li>Özel güvenlik ve SLA</li>
+              </ul>
+
+              <a href="#contact" class="btn btn-dark" style="width:100%;">İletişime Geç</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section testimonials" id="testimonials">
+        <div class="container text-center">
+          <div class="badge" style="background: rgba(255,255,255,0.06); color: #dbeafe;">MÜŞTERİ GÖRÜŞLERİ</div>
+          <h2 class="section-title">Yatırımınızı hak eden bir çözüm</h2>
+          <p class="section-subtitle" style="color: rgba(255,255,255,0.72);">
+            Eğitim kurumları, platformumuzu operasyonel verimlilik ve öğrenci deneyimi
+            için kullanıyor.
+          </p>
+
+          <div class="testimonial-grid">
+            <div class="testimonial">
+              <div class="stars">★★★★★</div>
+              <p>
+                “Tam bir operasyonel dönüştürücü oldu. Öğretmenler ve öğrenciler
+                için tek bir sistem kurduk ve süreçler çok daha hızlı ilerledi.”
+              </p>
+
+              <div class="person">
+                <div class="avatar">A</div>
+                <div>
+                  <strong>Ayşe Demir</strong><br />
+                  <small>Kurucu, Blue Academy</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial">
+              <div class="stars">★★★★★</div>
+              <p>
+                “Katılım oranı ciddi şekilde arttı. Raporlamalar, kullanıcı yönetimi
+                ve ödeme sistemi tek çatı altında çok başarılı.”
+              </p>
+
+              <div class="person">
+                <div class="avatar">M</div>
+                <div>
+                  <strong>Mehmet Yılmaz</strong><br />
+                  <small>Yönetim Kurulu Başkanı, ProEdu</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial">
+              <div class="stars">★★★★★</div>
+              <p>
+                “Öğrenci deneyimi çok gelişti. Platform artık hem eğitim hem de
+                operasyonel süreçlerde çok daha verimli çalışıyor.”
+              </p>
+
+              <div class="person">
+                <div class="avatar">E</div>
+                <div>
+                  <strong>Elif Kara</strong><br />
+                  <small>İçerik Müdürü, Future Learning</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section cta" id="contact">
+        <div class="container">
+          <div class="cta-box">
+            <div>
+              <h2>Eğitim operasyonlarınızı bir sonraki seviyeye taşıyın.</h2>
+              <p>
+                Kurumunuz için özel demo talebi oluşturun ve platformun faydasını görün.
+              </p>
+            </div>
+
+            <div class="cta-actions">
+              <a href="#" class="btn btn-primary">Demo Talep Et</a>
+              <a href="#" class="btn btn-secondary">İletişime Geç</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="logo" style="color: white;">
+          <span class="logo-mark"></span>
+          LearnFlow Pro
+        </div>
+
+        <div class="footer-links">
+          <a href="#features">Özellikler</a>
+          <a href="#solutions">Çözümler</a>
+          <a href="#pricing">Fiyatlar</a>
+          <a href="#testimonials">Müşteriler</a>
+          <a href="#contact">İletişim</a>
+        </div>
+
+        <div>© 2026 LearnFlow Pro</div>
+      </div>
+    </footer>
+  </body>
+</html>
